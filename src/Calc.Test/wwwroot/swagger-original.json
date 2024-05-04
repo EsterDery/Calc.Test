@@ -1,0 +1,75 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "home-iot-api",
+    "description" : "The API for the EatBacon IOT project",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/s8487458/TEST/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "http://localhost:7026",
+    "description" : "New Server 2"
+  } ],
+  "paths" : {
+    "/Math/calc" : {
+      "post" : {
+        "tags" : [ "CALC" ],
+        "description" : "calc value",
+        "parameters" : [ {
+          "name" : "operation",
+          "in" : "header",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "plus", "minus", "division", "multiplication" ]
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Math_calc_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Operation successful.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "number",
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request or operation."
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Math_calc_body" : {
+        "type" : "object",
+        "properties" : {
+          "num1" : {
+            "type" : "number"
+          },
+          "num2" : {
+            "type" : "number"
+          }
+        }
+      }
+    }
+  }
+}
